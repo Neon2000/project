@@ -1,0 +1,13 @@
+<tr id="postRow <%=post.id%>">
+    <td><%= post.name %></td>
+    <td><%= post.description %></td>
+    <td><%= post.comments.size  %></td>
+    <td><%= post.avg_rating%></td>
+    <td><%= link_to'Show', topic_post_path(@topic, post), method: :get%></td>
+    <td><%= link_to 'comments', topic_post_comments_path(@topic, post) %></td>
+    <% if can? :update,post%>
+    <td><%= link_to 'Edit', edit_topic_post_path(@topic,post) %></td>
+    <td><%= link_to 'Destroy', topic_post_path(@topic, post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+</tr>
+<!-- (post.reviews.average(:rating)|| 0.0).floor(1) -->

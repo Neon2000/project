@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+<head>
+  <style>
+    .load{
+      display: none;
+      position: absolute;
+      left: 10px;
+      top :10px;
+    }
+  </style>
+</head>
+<% if params.key? :topic_id %>
+<div>
+  <h1>Posts</h1>
+</div>
+  <% if @posts.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>total comments</th>
+          <th>average ratings</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody id="postsTable">
+        <% @posts.each do |post| %>
+          <%= render 'post_row', post: post %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%else%>
+      no posts
+    <%end%>
+  <div id="loading" class="load"><%=image_tag("Loading_icon.gif")%></div>
+  <br>
+  <%= link_to 'New Post', new_topic_post_path(@topic),remote: true%>
+  <br>
+  <%= link_to "Back to topic",topics_path %>
+  <dev id="newpost">
+  </dev>
+<p id="notice"><%= notice %></p>
+<%else%>
+  <h1 style="font-family:cursive;color:burlywood ;">All Posts</h1>
+  <div class="pull-right range-query">
+    <%= form_tag posts_path, method: :get do %>
+        <%= date_field_tag 'from',@f_date %>
+        <%= date_field_tag 'to',@t_date %>
+        <%= submit_tag 'search', class: 'btn search-button' %>
+    <%end%>
+  </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Posted_at</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.name %></td>
+            <td><%= post.description %></td>
+            <td><%= post.posted_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    <%= link_to "Back to topic",topics_path %>
+    <%= paginate @posts %>
+
+<%end%>
+
+
+
+

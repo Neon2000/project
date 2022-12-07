@@ -1,0 +1,31 @@
+<%= form_with(model: usercommentrating) do |form| %>
+  <% if usercommentrating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(usercommentrating.errors.count, "error") %> prohibited this usercommentrating from being saved:</h2>
+
+      <ul>
+        <% usercommentrating.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.hidden_field :comment_id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :star, 'Star:' %>
+    <%= form.collection_radio_buttons :star, (1..5).reverse_each.map { |n| [n, "#{n}⭐"] }, :first, :last do |b| %>
+      <%= b.radio_button %>
+      <%= b.label(style: 'display: inline') %>
+    <% end %>
+    <%= form.submit 'Add' %>
+  </div>
+<% end %>

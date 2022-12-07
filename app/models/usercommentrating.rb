@@ -1,0 +1,2 @@
+class Usercommentrating < ApplicationRecord
+end

@@ -1,0 +1,12 @@
+<% if @post.errors.any? %>
+	setTimeout(() => {$("#loading").show();},10);
+	setTimeout(() => {$("#loading").hide();},1950);
+	setTimeout(() => {alert("<%= j @post.errors.full_messages.join('; ')%>");},2000);
+<% else %>
+	setTimeout(() => {$("#loading").show();},10);
+	setTimeout(() => {$("#loading").hide();},1950);
+	$("#postsTable").prepend("<%=escape_javascript render('post_row', post: @post)%>");
+	setTimeout(() => {alert("post successfully created");},2000);
+<%end%>
+
+

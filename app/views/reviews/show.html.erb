@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<%= link_to 'Edit', edit_topic_post_review_path(@topic, @post, @review) %> |
+<%= link_to 'Back', topic_post_reviews_path(@topic, @post) %>

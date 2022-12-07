@@ -1,0 +1,8 @@
+<%if current_user.avatar.attached? %>
+	<%= image_tag(current_user.avatar)%><br>
+<%else%>
+	NO IMAGE 
+<%end%>
+<%=current_user.email%>
+<%=current_user.password%>
+<%=current_user.id %>

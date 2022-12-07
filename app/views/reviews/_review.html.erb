@@ -1,0 +1,4 @@
+<br><%= review.rating %> stars
+<br></label>
+<%= link_to 'Edit Rating', edit_topic_post_review_path(@topic, @post, review) %>
+<%= link_to 'Destroy Rating', topic_post_review_path(@topic, @post,review), method: :delete, data: { confirm: 'Are you sure?' } %><br>
